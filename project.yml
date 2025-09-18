@@ -1,0 +1,38 @@
+name: MyGame
+
+packages:
+  # These are known-good version for Godot 4.4 as of Sep 2025, update as needed
+  SwiftGodot:
+    url: https://github.com/migueldeicaza/SwiftGodot
+    revision: "20d2d7a35d2ad392ec556219ea004da14ab7c1d4"
+  SwiftGodotKit:
+    url: https://github.com/migueldeicaza/SwiftGodotKit
+    revision: "7d7edf2f7701ef0328aece07399ba878241c62f0"
+  SwiftGodotBuilder:
+    url: https://github.com/johnsusek/SwiftGodotBuilder
+    from: "0.0.5"
+
+targets:
+  MyGame:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+    sources: [Sources]
+    dependencies:
+      - package: SwiftGodot
+        product: SwiftGodot
+        embed: true
+      - package: SwiftGodotBuilder
+        product: SwiftGodotBuilder
+      - package: SwiftGodotBuilder
+        product: SwiftGodotPatterns
+      - package: SwiftGodotKit
+    postBuildScripts:
+      - path: scripts/build-pck.sh
+        inputFiles:
+          - $(SRCROOT)/GodotProject
+        outputFiles:
+          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/game.pck
