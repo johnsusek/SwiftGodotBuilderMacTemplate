@@ -13,5 +13,7 @@
 ```sh
 brew install xcodegen
 xcodegen
+open MyGame.xcodeproj
 ```
 
+You will get a build error about NodeApiGen binary - click Trust & Enable.
