@@ -20,9 +20,13 @@ GODOT_APP="$("${script_dir}/find-godot.sh" "$GODOT_VERSION" 2>/dev/null || true)
 
 [[ -x "$GODOT" ]] || { echo "Godot binary not found/executable: $GODOT" >&2; exit 1; }
 
-echo "Using ${GODOT}"
+echo "Using ${GODOT}\n"
 
 dest="${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/${PCK_NAME}"
 
+echo "Importing assets to Godot project\n"
 "$GODOT" --headless "${GODOT_PROJ_DIR}/project.godot" --quit
+
+echo "Exporting PCK to ${dest}\n"
+
 "$GODOT" --headless --path "$GODOT_PROJ_DIR" --export-pack "$GODOT_PRESET" "$dest"
