@@ -10,7 +10,7 @@
 : "${GODOT_VERSION:=4.4}"
 : "${GODOT:=/Applications/Godot.app/Contents/MacOS/Godot}"
 : "${GODOT_PROJ_DIR:=${SRCROOT:-.}/GodotProject}"
-: "${GODOT_PRESET:=macOS}"
+: "${GODOT_PRESET:=Packer}"
 : "${PCK_NAME:=game.pck}"
 
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
